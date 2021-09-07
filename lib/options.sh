@@ -58,10 +58,7 @@ process_option() {
       verify_homebrew_casks
       verify_app_store_applications
       verify_applications
-      verify_extensions
-      verify_node_packages
-      verify_ruby_gems
-      verify_rust_crates;;
+      verify_extensions;;
     'C')
       caffeinate_machine;;
     'ua')

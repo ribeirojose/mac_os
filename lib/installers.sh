@@ -124,13 +124,12 @@ install_git_project() {
   local project_dir="$3"
   local script="$4"
 
-  git clone "$repo_url"
+  git clone "$repo_url" "$HOME/$project_dir"
   (
-    cd "$project_dir"
+    cd "$HOME/$project_dir"
     git -c advice.detachedHead=false checkout "$repo_version"
-    eval "$script"
+    eval "$HOME/$project_dir/$script"
   )
-  rm -rf "$project_dir"
 }
 export -f install_git_project
 
@@ -180,10 +179,16 @@ install_program() {
 
   if [[ ! -e "$install_path" ]]; then
     download_file "$url" "$program_name"
+<<<<<<< HEAD
     mv "$MAC_OS_WORK_PATH/$program_name" "$install_path"
     chmod 755 "$install_path"
     printf "Installed: $program_name.\n"
     verify_application "$program_name"
+=======
+    chmod 755 "$MAC_OS_WORK_PATH/$program_name"
+    eval "$MAC_OS_WORK_PATH/$program_name"
+    rm "$MAC_OS_WORK_PATH/$program_name"
+>>>>>>> temp
   fi
 }
 export -f install_program
